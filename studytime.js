@@ -11,4 +11,34 @@ function closePrograms() {
 	});	
 };
 
+const puppeteer = require('puppeteer');
+
+async function openStudyPrograms() {
+	const webpageAddress = new Map ([
+		['ChatGPT', 'https://www.chat.openai.com'],
+		['Google', 'https://www.google.com'],
+		['Chester Portal', 'https://portal1.chester.ac.uk/Pages/default.aspx']
+	]);
+
+	 const browser = await puppeteer.launch({
+		 headless: false,
+		 executablePath: 'C:\\Users\\tosh-\\AppData\\Local\\Chromium\\Application\\chrome.exe'
+	});
+
+	 try {
+		 for (const [webpage, url] of webpageAddress) {
+		 const page = await browser.newPage();
+		 await page.goto(url);
+		 console.log(`Success! '${webpage}' Opened!`);
+		 }
+	 } catch (error) {
+		 console.log(`ERROR with ${webpage}`, error);
+		 };
+};
 closePrograms();
+
+(async () => {
+console.log(`TEST TEST TEST ! - BEFORE`);
+await openStudyPrograms();
+console.log(`TEST TEST TEST ! - BEFORE`);
+})();
