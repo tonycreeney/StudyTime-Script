@@ -4,9 +4,7 @@ const { exec } = require('child_process');
 const puppeteer = require('puppeteer');
 
 async function closePrograms() {
-	return new Promise((resolve, reject) => {
-	const programNames = ['chrome.exe', 'Spotify.exe', 'Discord.exe', 'Teams.exe', 'Battle.net.exe'];
-	let count = 0;
+	const programNames = ['Spotify.exe', 'Discord.exe', 'Teams.exe', 'Battle.net.exe'];
 		
 	programNames.forEach((program) => {
 		exec(`taskkill /F /IM ${program}`, (error) => {
@@ -14,13 +12,9 @@ async function closePrograms() {
 				console.log(`Error Closing ${program}: `, error); 
 			} else {
 			console.log(`${program} HAS BEEN CLOSED`);
-			count++;
 			};
 		});
 		});
-			if (count === programNames.length) {
-				resolve();};
-	});
 }
 
 
